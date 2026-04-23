@@ -29,6 +29,11 @@ Follows [RFC8785: JSON Canonicalization Scheme (JCS)](https://tools.ietf.org/htm
 
 ![JSON cannon](./OdH7hw1.png)
 
+## Install
+
+```sh
+npm i -S @susbtrate-system/json-canon
+```
 
 ## Fork
 

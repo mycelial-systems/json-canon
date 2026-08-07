@@ -19,6 +19,7 @@ Follows [RFC8785: JSON Canonicalization Scheme (JCS)](https://tools.ietf.org/htm
 
 <!-- toc -->
 
+- [Install](#install)
 - [Fork](#fork)
 - [_Featuring_](#_featuring_)
 - [References](#references)

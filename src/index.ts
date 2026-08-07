@@ -96,6 +96,7 @@ function serializeArray (arr:any[]):string {
 function serializeObject (obj: Record<string, unknown>):string {
     const sortedKeys = sort(Object.keys(obj))
     let str = '{'
+    let isFirst = true
     const length = sortedKeys.length
     for (let i = 0; i < length; i++) {
         const key = sortedKeys[i]
@@ -103,9 +104,12 @@ function serializeObject (obj: Record<string, unknown>):string {
         if (val === undefined || typeof val === 'symbol') {
             continue
         }
-        if (i !== 0 && str.length !== 0) {
+        // separate on emitted properties, not on loop position, because
+        // skipped keys would otherwise leave a stray comma
+        if (!isFirst) {
             str += ','
         }
+        isFirst = false
         str += stringify(key) + ':' + stringify(val)
     }
     return str + '}'

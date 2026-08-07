@@ -113,6 +113,30 @@ test('object with undefined value', (t) => {
     t.equal(actual, expected, 'undefined values should be omitted from objects')
 })
 
+test('object with undefined as the first sorted key', (t) => {
+    const input = { a: undefined, b: 2 }
+    const expected = '{"b":2}'
+    const actual = jsonCanon(input)
+    t.equal(actual, expected,
+        'a skipped first key should not emit a leading comma')
+})
+
+test('object with a symbol as the first sorted key', (t) => {
+    const input = { a: Symbol('a'), b: 2 }
+    const expected = '{"b":2}'
+    const actual = jsonCanon(input)
+    t.equal(actual, expected,
+        'a skipped symbol key should not emit a leading comma')
+})
+
+test('object with several leading skipped keys', (t) => {
+    const input = { a: undefined, b: undefined, c: 3, d: 4 }
+    const expected = '{"c":3,"d":4}'
+    const actual = jsonCanon(input)
+    t.equal(actual, expected,
+        'commas should separate only the emitted properties')
+})
+
 test('object with null value', (t) => {
     const input = { test: null }
     const expected = '{"test":null}'
